@@ -1,0 +1,34 @@
+﻿@model ToDo
+
+<h2>Uus tegevus</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Add" method="post">
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Tegevuse kirjeldus</label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryID" class="form-label">Tegevuse liik</label>
+        <select asp-for="CategoryID" class="form-select" asp-items="@(new SelectList(ViewBag.Categories,"CategoryID","Name"))">
+            <option value=""></option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DueDate" class="form-label">Tähtaeg:</label>
+        <input asp-for="DueDate" class="form-control" type="text"/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="StatusID" class="form-label">Tegevuse staatus</label>
+        <select asp-for="StatusID" class="form-select" asp-items="@(new SelectList(ViewBag.Statuses,"StatusID","Name"))">
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lisa</button>
+    <a asp-action="Index" class="btn btn-primary">Tühista</a>
+
+</form>
